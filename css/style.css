@@ -67,7 +67,7 @@
     padding: 60px 10%; gap: 40px;
   }
   .service:nth-child(even) {
-    grid-template-columns: 1fr 1fr; direction: rtl;
+    /* grid-template-columns: 1fr 1fr; direction: rtl; */
     background-color: #f1f1f1;
   }
   .service-text h1 { font-size: 2.2rem; margin-bottom: 20px; }
@@ -171,3 +171,69 @@
     }
   }
   
+  @media (max-width: 768px) {
+  .service {
+    flex-direction: column;
+    text-align: center;
+  }
+  .service-image {
+    display: none; /* if you want to hide image on mobile */
+  }
+}
+@media (max-width: 768px) {
+  .team-slider {
+    overflow-x: auto; /* enables horizontal scroll */
+  }
+  .team-slide-track {
+    display: flex;
+    width: auto; /* adjusts width to content */
+    animation: none; /* disable infinite scroll animation on mobile */
+  }
+  .team-slide {
+    flex: 0 0 auto; /* prevent shrinking, auto width */
+    width: 200px; /* fixed width for each card */
+    margin-right: 15px; /* spacing between cards */
+  }
+}
+/* ✅ Hamburger Menu Styles */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ✅ Responsive Navbar */
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .logo{
+    align-items: end;
+  }
+
+  .menu-toggle {
+    display: block; /* show hamburger on mobile */
+  }
+
+  nav {
+    display: none !important; /* ensure nav is hidden by default */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav.show {
+    display: flex !important; /* show when toggled */
+  }
+
+  nav a {
+    padding: 10px 0;
+  }
+
+  header .contact-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

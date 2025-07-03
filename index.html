@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Logo Digital Solutions - Tech Solutions</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">  
 </head>
 <body>
 
@@ -13,7 +13,13 @@
     <div class="logo">
       <img src="Images/logo.png" alt="Your Logo Digital Solutions" width="150" />
     </div>
-    <nav>
+  
+    <!-- ✅ Hamburger Menu Icon -->
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+  
+    <nav id="nav-menu">
       <a href="#home">Home</a>
       <div class="dropdown">
         <a href="#product">Products ▼</a>
@@ -28,8 +34,10 @@
       <a href="#about">About</a>
       <a href="#team">Our Team</a>
     </nav>
+  
     <a href="#contact" class="contact-btn">Contact for project →</a>
   </header>
+  
 
   <!-- Hero -->
   <section class="hero" id="home">
@@ -207,13 +215,13 @@
     <div class="contact-container">
       <h2>Contact Us</h2>
       <div class="contact-grid">
-        <form>
+        <form id="contactForm">
           <input type="text" placeholder="Your Name" required />
           <input type="email" placeholder="Your Email" required />
           <input type="text" placeholder="Subject" required />
           <textarea rows="5" placeholder="Your Message" required></textarea>
           <button type="submit">Send Message</button>
-        </form>
+        </form>        
         <div class="contact-details">
           <h3>Reach us at</h3>
           <p>Email: yourlogogdcompany@gmail.com</p>
@@ -232,6 +240,47 @@
   <footer>
     <p>&copy; 2025 Your Logo Digital Solutions. All rights reserved.</p>
   </footer>
-
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+  
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+  </script>
+  <script>
+    const form = document.getElementById('contactForm');
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+  
+      const data = {
+        data: {
+          name: form.elements[0].value,
+          email: form.elements[1].value,
+          subject: form.elements[2].value,
+          message: form.elements[3].value,
+          timestamp: new Date().toISOString()
+        }
+      };
+  
+      fetch('https://sheetdb.io/api/v1/kym0at5rd6m99', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert('Message sent successfully');
+        form.reset();
+      })
+      .catch(error => {
+        alert('Error: ' + error.message);
+      });
+    });
+  </script>
+  
 </body>
 </html>
